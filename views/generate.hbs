@@ -1,0 +1,14 @@
+<div class="card-footer d-flex flex-column align-items-center">
+    <p class="text-success fs-4" id="shortenUrl">{{shortUrl}}</p>
+    <button class="btn btn-success mt-1" id="copyBtn" onclick="copyShortenUrl()">Copy</button>
+    <a class="btn btn-primary mt-4" href="/">Generate another short URL</a>
+</div>
+
+<script>
+    function copyShortenUrl() {
+        const shortenUrl = document.getElementById("shortenUrl")
+        navigator.clipboard.writeText(shortenUrl.innerText)
+            .then(() => alert('copied'))
+            .catch(error => alert('error!'))
+    }
+</script>
