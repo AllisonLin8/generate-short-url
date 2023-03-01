@@ -3,6 +3,7 @@
         alt="image-url">
     <form action="/" method="POST" class="d-flex flex-column align-items-center mt-3">
         <input type="url" id="url" name="originUrl" placeholder='Input URL Here' class="mt-1" required>
+        {{!-- <input>中新增屬性required，防止使用者未輸入任何內容就送出表單 --}}
         <button type="submit" class="btn btn-primary mt-3">Generate</button>
     </form>
 </div>
