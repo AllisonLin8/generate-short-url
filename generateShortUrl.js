@@ -4,7 +4,7 @@ function sample(lotteryBox) {
 }
 
 function generateShortUrl(originUrl, length) {
-    const data = { originUrl: originUrl, shortUrl: 'localhost:3000/yourShortUrl/' }
+    const data = { originUrl: originUrl, shortUrl: '' } // Modify the content of shortUrl
     const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
     const upperCaseLetters = lowerCaseLetters.toUpperCase()
     const number = '0123456789'

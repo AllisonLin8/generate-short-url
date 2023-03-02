@@ -16,29 +16,24 @@ router.post('/', async (req, res) => {
             return res.render('generate', { shortUrl: result.shortUrl })
         } else { // 無，生成新的短網址且檢查有無和已有的短網址重複，再返回建立完成的資料
             const newData = await checkShortUrl(generateShortUrl(req.body.originUrl, 5))
-            Url.create(newData)
+            await Url.create(newData) // Fix syntax
             return res.render('generate', { shortUrl: newData.shortUrl })
         }
     } catch (error) {
         console.log(error)
-        res.render('errorPage', { error: error.message })
+        res.render('errorPage', { error: error.message }) // Add the error page of the api
     }
-}
-)
-// 瀏覽短網址的頁面
-router.get('/generate', (req, res) => {
-    res.render('generate')
 })
 // 透過短網址來瀏覽原網址的頁面
 router.get('/yourShortUrl/:shortUrl', (req, res) => {
-    const shortUrl = req.headers.host + req.url
+    const shortUrl = req.params.shortUrl // Modify shortUrl parameter
     Url.findOne({ shortUrl: shortUrl })
         .then(result => {
             return res.redirect(result.originUrl)
         })
         .catch(error => {
             console.log(error)
-            res.render('errorPage', { error: error.message })
+            res.render('errorPage', { error: error.message }) // Add the error page of the api
         })
 })
 
